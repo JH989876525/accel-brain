@@ -1,0 +1,1 @@
+FROM innodiskorg/open-webui:v0.2
