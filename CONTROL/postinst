@@ -1,0 +1,33 @@
+#!/bin/bash
+
+function install_docker_images() {
+# Remove old docker images before install
+    ID_OLLAMA=$(docker images | grep 'ollama' | head -n 1 | awk '{print $3}')
+    ID_OPEN_WEBUI=$(docker images | grep 'open-webui' | head -n 1 | awk '{print $3}')
+    if [ ! -z ${ID_OLLAMA} ] || [ ! -z ${ID_OPEN_WEBUI} ]
+    then
+        docker rmi --force ${ID_OLLAMA} ${ID_OPEN_WEBUI}
+    fi
+
+# Install docker images
+    docker load -i /opt/innodisk/accelbrain/ollama.tar
+    docker load -i /opt/innodisk/accelbrain/open-webui.tar
+
+# Tag docker images to latest
+    TAG_OPEN_WEBUI=$(docker images | grep 'ppes-mqtt' | head -n 1 | awk '{print $2}')
+    docker tag open-webui:${TAG_OPEN_WEBUI} open-webui:latest
+
+# Clean compressed files
+    rm -rf /opt/innodisk/accelbrain/*.tar
+}
+
+function enable_services() {
+    systemctl daemon-reload
+    systemctl enable accel-brain
+    systemctl start accel-brain
+}
+
+if [ "$1" = "configure" ]
+then
+    install_docker_images
+fi

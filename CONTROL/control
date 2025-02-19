@@ -1,0 +1,6 @@
+Package: AccelBrain
+Version: @@VERSION@@
+Architecture: @@TARGET@@
+Maintainer: JH989876525 https://github.com/InnoIPA
+Description: AccelBrain solution by innodisk.
+Depends: docker.io | docker-ce, docker-compose

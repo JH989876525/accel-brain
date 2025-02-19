@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ "$1" = "remove" ] || [ "$1" = "purge" ]; then
+# Stop services
+    systemctl stop accel-brain
+
+# Reload services
+    systemctl daemon-reload
+
+# Remove rest files
+    rm -rf /opt/innodisk/ppes
+fi

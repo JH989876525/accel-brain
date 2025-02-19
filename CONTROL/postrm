@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if [ "$1" = "remove" ] || [ "$1" = "purge" ]; then
+# Remove docker images
+    ID_OLLAMA=$(docker images | grep 'ollama' | head -n 1 | awk '{print $3}')
+    ID_OPEN_WEBUI=$(docker images | grep 'open-webui' | head -n 1 | awk '{print $3}')
+    docker rmi --force ${ID_OLLAMA} ${ID_OPEN_WEBUI}
+
+# Reload services
+    systemctl daemon-reload
+
+# Remove rest files
+    rm -rf /opt/innodisk/accelbrain
+fi
