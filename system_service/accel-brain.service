@@ -1,0 +1,15 @@
+[Unit]
+Description=Backend service of ppes, based on docker-compose.
+After=docker.service mount-noauto.service
+Requires=docker.service docker.socket mount-noauto.service
+
+[Service]
+Type=simple
+RemainAfterExit=yes
+ExecStart=/usr/bin/ppes-backend start
+ExecStop=/usr/bin/ppes-backend stop
+Restart=on-failure
+RestartSec=1
+
+[Install]
+WantedBy=multi-user.target

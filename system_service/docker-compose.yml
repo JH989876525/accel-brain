@@ -1,0 +1,22 @@
+version: "3.4"
+services:
+    mqtt:
+        image: ollama:latest
+        container_name: ollama
+        network_mode: host
+        volumes:
+          - "/opt/innodisk:/opt/innodisk"
+        healthcheck:
+          test: ["CMD-SHELL", "nc -zv 127.0.0.1 1883"]
+          interval: 5s
+          timeout:  3s
+          retries:  5
+    rtsp:
+        image: open-webui:latest
+        container_name: open-webui
+        network_mode: host
+        healthcheck:
+          test: ["CMD-SHELL", "nc -zv 127.0.0.1 8554"]
+          interval: 5s
+          timeout:  3s
+          retries:  5
