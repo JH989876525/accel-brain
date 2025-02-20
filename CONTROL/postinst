@@ -15,7 +15,7 @@ function install_docker_images() {
 
 # Tag docker images to latest
     TAG_OPEN_WEBUI=$(docker images | grep 'open-webui' | head -n 1 | awk '{print $2}')
-    docker tag open-webui:${TAG_OPEN_WEBUI} open-webui:latest
+    docker tag innodiskorg/open-webui:${TAG_OPEN_WEBUI} innodiskorg/open-webui:latest
 
 # Clean compressed files
     rm -rf /opt/innodisk/accelbrain/*.tar
