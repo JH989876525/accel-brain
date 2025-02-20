@@ -5,7 +5,7 @@
 # container image.
 
 # MANIFEST="/usr/share/container-images/images.manifest"
-CONF_FILE="/usr/share/container-images/docker-compose.yml"
+CONF_FILE="/opt/innodisk/accelbrain/docker-compose.yml"
 
 info() {
     echo "container-image: ${*}"

@@ -30,4 +30,6 @@ function enable_services() {
 if [ "$1" = "configure" ]
 then
     install_docker_images
+
+    enable_services
 fi

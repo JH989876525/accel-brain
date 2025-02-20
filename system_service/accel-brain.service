@@ -6,8 +6,8 @@ Requires=docker.service docker.socket mount-noauto.service
 [Service]
 Type=simple
 RemainAfterExit=yes
-ExecStart=/usr/bin/ppes-backend start
-ExecStop=/usr/bin/ppes-backend stop
+ExecStart=/opt/innodisk/accelbrain/accel-brain.sh start
+ExecStop=/opt/innodisk/accelbrain/accel-brain.sh stop
 Restart=on-failure
 RestartSec=1
 

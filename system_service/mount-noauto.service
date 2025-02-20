@@ -7,7 +7,7 @@ Requires=local-fs.target
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/usr/bin/mount-noauto start
+ExecStart=/opt/innodisk/accelbrain/mount-noauto.sh start
 
 [Install]
 WantedBy=multi-user.target

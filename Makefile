@@ -37,16 +37,16 @@ data: images
 	@mkdir -p data/opt/innodisk/accelbrain
 	@cp ollama/ollama.tar					data/opt/innodisk/accelbrain/
 	@cp open-webui/open-webui.tar			data/opt/innodisk/accelbrain/
-	@mkdir -p data/usr/share/container-images/
-	@cp system_service/docker-compose.yml	data/usr/share/container-images/
+	@cp system_service/docker-compose.yml	data/opt/innodisk/accelbrain/
 	@mkdir -p data/etc/systemd/system
 	@cp system_service/accel-brain.service	data/etc/systemd/system/accel-brain.service
 	@chmod 644 data/etc/systemd/system/accel-brain.service
-	@mkdir -p data/usr/bin/
-	@cp system_service/mount-noauto.sh		data/usr/bin/mount-noauto
-	@chmod 755 data/usr/bin/mount-noauto
 	@cp system_service/mount-noauto.service	data/etc/systemd/system/mount-noauto.service
 	@chmod 644 data/etc/systemd/system/mount-noauto.service
+	@cp system_service/accel-brain.sh		data/opt/innodisk/accelbrain/accel-brain.sh
+	@chmod 755 data/opt/innodisk/accelbrain/accel-brain.sh
+	@cp system_service/mount-noauto.sh		data/opt/innodisk/accelbrain/mount-noauto.sh
+	@chmod 755 data/opt/innodisk/accelbrain/mount-noauto.sh
 
 .PHONY: $(IPK)
 $(IPK): data
