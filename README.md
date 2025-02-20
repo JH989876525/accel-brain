@@ -1,6 +1,7 @@
 - [Overview](#overview)
 - [Build ipk](#build-ipk)
 - [Install ipk](#install-ipk)
+- [Uninstall ipk](#uninstall-ipk)
 - [Run](#run)
 
 # Overview
@@ -8,15 +9,21 @@
 
 # Build ipk
 ```bash
-    make all
+make all
 ```
 
 # Install ipk
 ```bash
-    opkg install accelbrain*.ipk
+opkg install accelbrain*.ipk
+```
+
+# Uninstall ipk
+```bash
+opkg list-installed
+opkg remove AccelBrain
 ```
 
 # Run
 ```bash
-    http://localhost:8080/
+http://localhost:8080/
 ```
