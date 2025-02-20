@@ -1,19 +1,18 @@
 version: "3.4"
 services:
     ollama:
-      image: ollama/ollama
-      container_name: ollama
+      image: ollama/ollama:latest
       restart: always
       ports:
         - "11434:11434"
       volumes:
-        - ollama:/opt/innodisk/accelbrain/.ollama
+       - /opt/innodisk/accelbrain/ollama:/root/.ollama
     open-webui:
-        image: open-webui:latest
-        container_name: open-webui
-        restart: always
-        network_mode: host
-        volumes:
-          - open-webui:/opt/innodisk/accelbrain/backend/data
-        environment:
-          - OLLAMA_BASE_URL=http://127.0.0.1:11434
+      image: innodiskorg/open-webui:latest
+      container_name: open-webui
+      restart: always
+      network_mode: host
+      volumes:
+       - /opt/innodisk/accelbrain/open-webui:/app/backend/data
+      environment:
+        - OLLAMA_BASE_URL=http://127.0.0.1:11434

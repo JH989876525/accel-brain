@@ -47,8 +47,8 @@ data: ollama/ollama.tar open-webui/open-webui.tar
 	@chmod 755 data/opt/innodisk/accelbrain/accel-brain.sh
 	@cp system_service/mount-noauto.sh		data/opt/innodisk/accelbrain/mount-noauto.sh
 	@chmod 755 data/opt/innodisk/accelbrain/mount-noauto.sh
-	@mkdir -p data/opt/innodisk/accelbrain/.ollama
-	@mkdir -p data/opt/innodisk/accelbrain/backend/data
+	@mkdir -p data/opt/innodisk/accelbrain/ollama
+	@mkdir -p data/opt/innodisk/accelbrain/open-webui
 
 .PHONY: $(IPK)
 $(IPK): data
