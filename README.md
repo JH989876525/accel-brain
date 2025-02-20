@@ -20,7 +20,7 @@ opkg install accelbrain*.ipk
 # Uninstall ipk
 ```bash
 opkg list-installed
-opkg remove AccelBrain
+opkg remove AccelBrain --force-remove
 ```
 
 # Run
