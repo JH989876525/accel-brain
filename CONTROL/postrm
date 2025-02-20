@@ -8,7 +8,4 @@ if [ "$1" = "remove" ] || [ "$1" = "purge" ]; then
 
 # Reload services
     systemctl daemon-reload
-
-# Remove rest files
-    rm -rf /opt/innodisk/accelbrain
 fi
