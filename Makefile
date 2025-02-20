@@ -52,7 +52,7 @@ data: images
 $(IPK): data
 	tar --numeric-owner --owner=0 --group=0 -cvzf control.tar.gz CONTROL
 	tar --numeric-owner --owner=0 --group=0 -cvzf data.tar.gz data
-	pigz -k -f -p $(shell nproc) data
+	tar -I pigz -cf data.tar.gz data
 	@echo $(VERSION) > debian-binary
 	ar rcs $(IPK) debian-binary control.tar.gz data.tar.gz
 
