@@ -50,9 +50,8 @@ data: images
 
 .PHONY: $(IPK)
 $(IPK): data
-	tar --numeric-owner --owner=0 --group=0 -cvzf control.tar.gz CONTROL
-	tar --numeric-owner --owner=0 --group=0 -cvzf data.tar.gz data
-	tar -I pigz -cf data.tar.gz data
+	tar -czf control.tar.gz -C CONTROL .
+	tar -czf data.tar.gz -C data .
 	@echo $(VERSION) > debian-binary
 	ar rcs $(IPK) debian-binary control.tar.gz data.tar.gz
 
