@@ -17,7 +17,7 @@ help:
 	@echo 'Usage:'
 	@echo ''
 	@echo '  make all'
-	@echo '  make deb'
+	@echo '  make data'
 	@echo '  make clean'
 	@echo ''
 
@@ -29,8 +29,8 @@ images:
 	make all -C ollama
 	make all -C open-webui
 
-.PHONY: initial
-initial: images
+.PHONY: data
+data: images
 	@mkdir -p data
 	@sed -i s/@@VERSION@@/$(VERSION)/g 		CONTROL/control
 	@sed -i s/@@TARGET@@/$(TARGET)/g 		CONTROL/control
@@ -49,12 +49,13 @@ initial: images
 	@chmod 644 data/etc/systemd/system/mount-noauto.service
 
 .PHONY: $(IPK)
-$(IPK): initial
+$(IPK): data
 	tar --numeric-owner --owner=0 --group=0 -cvzf control.tar.gz CONTROL
 	tar --numeric-owner --owner=0 --group=0 -cvzf data.tar.gz data
+	pigz -k -f -p $(shell nproc) data
 	@echo $(VERSION) > debian-binary
 	ar rcs $(IPK) debian-binary control.tar.gz data.tar.gz
 
 .PHONY: clean
 clean:
-	-@$(RM) ollama/*.tar open-webui/*.tar *.tar.gz *.ipk
+	-@$(RM) ollama/*.tar open-webui/*.tar *.tar.gz *.ipk data

@@ -1,3 +1,4 @@
+*.ipk
 *.tar
 *.tar.gz
 debian-binary
