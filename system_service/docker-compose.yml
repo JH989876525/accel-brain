@@ -1,22 +1,19 @@
 version: "3.4"
 services:
-    mqtt:
-        image: ollama:latest
-        container_name: ollama
-        network_mode: host
-        volumes:
-          - "/opt/innodisk:/opt/innodisk"
-        healthcheck:
-          test: ["CMD-SHELL", "nc -zv 127.0.0.1 1883"]
-          interval: 5s
-          timeout:  3s
-          retries:  5
-    rtsp:
+    ollama:
+      image: ollama/ollama
+      container_name: ollama
+      restart: always
+      ports:
+        - "11434:11434"
+      volumes:
+        - ollama:/root/.ollama
+    open-webui:
         image: open-webui:latest
         container_name: open-webui
+        restart: always
         network_mode: host
-        healthcheck:
-          test: ["CMD-SHELL", "nc -zv 127.0.0.1 8554"]
-          interval: 5s
-          timeout:  3s
-          retries:  5
+        volumes:
+          - open-webui:/app/backend/data
+        environment:
+          - OLLAMA_BASE_URL=http://127.0.0.1:11434
