@@ -24,13 +24,13 @@ help:
 .PHONY: all
 all: $(IPK)
 
-.PHONY: images
-images:
+ollama/ollama.tar:
 	make all -C ollama
+open-webui/open-webui.tar:
 	make all -C open-webui
 
 .PHONY: data
-data: images
+data: ollama/ollama.tar open-webui/open-webui.tar 
 	@mkdir -p data
 	@sed -i s/@@VERSION@@/$(VERSION)/g 		CONTROL/control
 	@sed -i s/@@TARGET@@/$(TARGET)/g 		CONTROL/control
@@ -47,6 +47,8 @@ data: images
 	@chmod 755 data/opt/innodisk/accelbrain/accel-brain.sh
 	@cp system_service/mount-noauto.sh		data/opt/innodisk/accelbrain/mount-noauto.sh
 	@chmod 755 data/opt/innodisk/accelbrain/mount-noauto.sh
+	@mkdir -p data/opt/innodisk/accelbrain/.ollama
+	@mkdir -p data/opt/innodisk/accelbrain/backend/data
 
 .PHONY: $(IPK)
 $(IPK): data

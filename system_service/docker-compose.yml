@@ -7,13 +7,13 @@ services:
       ports:
         - "11434:11434"
       volumes:
-        - ollama:/root/.ollama
+        - ollama:/opt/innodisk/accelbrain/.ollama
     open-webui:
         image: open-webui:latest
         container_name: open-webui
         restart: always
         network_mode: host
         volumes:
-          - open-webui:/app/backend/data
+          - open-webui:/opt/innodisk/accelbrain/backend/data
         environment:
           - OLLAMA_BASE_URL=http://127.0.0.1:11434
