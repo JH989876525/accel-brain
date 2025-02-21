@@ -6,7 +6,7 @@
 
 # MANIFEST="/usr/share/container-images/images.manifest"
 CONF_FILE="/opt/innodisk/accelbrain/docker-compose.yml"
-export COMPOSE_HTTP_TIMEOUT=240
+export COMPOSE_HTTP_TIMEOUT=600
 
 info() {
     echo "container-image: ${*}"
