@@ -1,6 +1,14 @@
 #!/bin/bash
 
 if [ "$1" = "remove" ] || [ "$1" = "purge" ]; then
+# Remove old docker images before install
+    ID_OLLAMA=$(docker images | grep 'ollama' | head -n 1 | awk '{print $1}')
+    ID_OPEN_WEBUI=$(docker images | grep 'open-webui' | head -n 1 | awk '{print $1}')
+    if [ ! -z ${ID_OLLAMA} ] || [ ! -z ${ID_OPEN_WEBUI} ]
+    then
+        docker stop ${ID_OLLAMA} ${ID_OPEN_WEBUI}
+    fi
+
 # Stop services
     systemctl stop accel-brain
     systemctl stop mount-noauto
